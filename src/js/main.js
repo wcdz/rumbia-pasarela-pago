@@ -194,31 +194,33 @@ async function processPayment() {
         step.classList.remove('active', 'completed');
     });
     
-    // Animar pasos de validación
-    await animateValidationSteps();
-    
     // Preparar datos para el payload
     const amountInput = document.getElementById('amountInput');
     const formData = {
         amount: amountInput ? amountInput.value : '250.00'
     };
     
-    // Construir payload y enviar al endpoint
+    // Construir payload
     const payload = buildPaymentPayload(formData);
-    console.log('Enviando payload:', payload);
     
-    const result = await emitirPoliza(payload);
+    // 🔥 Enviar POST al backend en segundo plano (no esperar respuesta)
+    emitirPoliza(payload).then(result => {
+        if (result.success) {
+            console.log('✅ Backend respondió exitosamente:', result.data);
+        } else {
+            console.warn('⚠️ Backend no respondió o hubo error:', result.error);
+        }
+    }).catch(error => {
+        console.error('❌ Error inesperado del backend:', error);
+    });
     
-    let transactionId;
+    // Generar ID de transacción inmediatamente (sin esperar backend)
+    const transactionId = generateTransactionId();
     
-    if (result.success) {
-        transactionId = result.data.transactionId || result.data.id || generateTransactionId();
-    } else {
-        console.warn('Usando transacción mock debido a error:', result.error);
-        transactionId = generateTransactionId();
-    }
+    // Animar pasos de validación (continuar sin esperar backend)
+    await animateValidationSteps();
     
-    // Mostrar pantalla de éxito
+    // Mostrar pantalla de éxito inmediatamente después de la animación
     setTimeout(() => {
         document.getElementById('transactionId').textContent = transactionId;
         document.getElementById('loading-screen').classList.remove('active');

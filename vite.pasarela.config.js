@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: 'src',
-  publicDir: '../public',
+  publicDir: false, // No usar publicDir porque assets están en src/assets
   server: {
     port: 5173,
     open: true,
@@ -22,7 +22,8 @@ export default defineConfig({
       '@': '/src',
       '@services': '/src/services',
       '@utils': '/src/utils',
-      '@config': '/src/config'
+      '@config': '/src/config',
+      '@assets': '/src/assets'
     }
   }
 });

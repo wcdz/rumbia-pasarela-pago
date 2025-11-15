@@ -1,0 +1,1175 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos del body */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #00C851 0%, #00953D 50%, #007A33 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.payment-container {
+    background: white;
+    width: 100%;
+    max-width: 320px;
+    margin: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.payment-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    pointer-events: none;
+}
+
+/* Sección de branding */
+.brand-section {
+    background: linear-gradient(135deg, #00C851 0%, #00A83F 50%, #00953D 100%);
+    padding: 18px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.brand-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.interseguro-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 0 auto 8px;
+    display: block;
+    object-fit: cover;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
+}
+
+.brand-logo {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.brand-subtitle {
+    font-size: 11px;
+    opacity: 0.9;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Sección del formulario */
+.form-section {
+    padding: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Elementos de confianza */
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+    padding: 8px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.trust-badge i {
+    color: #10b981;
+    font-size: 10px;
+}
+
+/* Powered by footer */
+.powered-by {
+    background: #f8fafc;
+    padding: 8px 16px;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+}
+
+.powered-by-text {
+    font-size: 9px;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.powered-by-link {
+    color: #00C851;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.powered-by-link:hover {
+    color: #00A83F;
+    text-decoration: underline;
+}
+
+/* Display del monto */
+.amount-display {
+    background: linear-gradient(135deg, #fefefe 0%, #f8fafc 100%);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    margin-bottom: 16px;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.amount-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+}
+
+.amount-label {
+    font-size: 10px;
+    color: #64748b;
+    margin-bottom: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.amount-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Container del input de monto */
+.amount-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+}
+
+.currency-symbol {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin-right: 1px;
+}
+
+/* Input de monto */
+.amount-input {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    border: none;
+    background: transparent;
+    outline: none;
+    text-align: center;
+    width: auto;
+    min-width: 80px;
+    max-width: 150px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.amount-input:focus {
+    background: rgba(0, 200, 81, 0.05);
+    box-shadow: 0 0 0 2px rgba(0, 200, 81, 0.2);
+    padding: 4px 8px 4px 8px;
+}
+
+.amount-input::placeholder {
+    color: #94a3b8;
+}
+
+.amount-input::-webkit-outer-spin-button,
+.amount-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.amount-input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Grupos del formulario */
+.form-group {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #374151;
+    font-size: 11px;
+    transition: all 0.2s ease;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    background: white;
+    color: #1f2937;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+    transition: opacity 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #00C851;
+    box-shadow: 0 0 0 2px rgba(0, 200, 81, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.form-control:focus::placeholder {
+    opacity: 0.7;
+}
+
+.form-control:hover:not(:focus) {
+    border-color: #d1d5db;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.form-control.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* Campo de tarjeta */
+.card-input {
+    position: relative;
+}
+
+.card-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-size: 18px;
+    transition: all 0.2s ease;
+    padding: 3px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.card-input:focus-within .card-icon {
+    color: #00C851;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Mensajes de error */
+.error-message {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+    font-weight: 500;
+}
+
+/* Sistema de Pasos/Slides */
+.payment-step {
+    display: none !important;
+    animation: slideIn 0.3s ease-out;
+}
+
+.payment-step.active {
+    display: block !important;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Header de Información de Pago - Paso 2 */
+.payment-info-header {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 12px;
+}
+
+.payment-subtitle {
+    font-size: 11px;
+    color: #666;
+    margin: 0 0 6px 0;
+}
+
+.contact-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 2px 0;
+    text-transform: uppercase;
+}
+
+.contact-phone {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 12px 0;
+}
+
+/* Resumen de Compra */
+.purchase-summary {
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 0;
+    margin: 0 0 16px 0;
+    overflow: hidden;
+}
+
+/* Sección de Token/PIN */
+.token-section {
+    margin: 16px 0;
+}
+
+.token-desc {
+    font-size: 11px;
+    color: #64748b;
+    margin: 4px 0 12px 0;
+    line-height: 1.4;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    background: white;
+}
+
+.summary-row:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.summary-label {
+    font-size: 13px;
+    color: #000;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 13px;
+    color: #333;
+    font-weight: 400;
+    text-align: right;
+}
+
+.amount-large {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.destination-value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.summary-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    object-fit: cover;
+    background: white;
+    padding: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.total-row {
+    margin-top: 6px;
+    padding-top: 12px;
+    border-top: 2px solid #00C851;
+    border-bottom: none;
+}
+
+.total-row .summary-label {
+    font-size: 13px;
+    color: #00953D;
+    font-weight: 700;
+}
+
+.total-amount {
+    font-size: 18px;
+    color: #00C851;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* Botón de pago */
+.pay-button {
+    width: 100%;
+    background: linear-gradient(135deg, #00C851 0%, #00A83F 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 200, 81, 0.25), 0 1px 3px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Botón de volver */
+.back-button {
+    width: 100%;
+    background: white;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.back-button:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #475569;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.back-button:active {
+    transform: translateY(0);
+}
+
+.back-button i {
+    font-size: 12px;
+}
+
+/* Texto "Managed by" */
+.managed-by {
+    text-align: center;
+    font-size: 9px;
+    color: #64748b;
+    margin-top: 10px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.learn-more {
+    color: #00C851;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    font-size: 9px;
+}
+
+.learn-more:hover {
+    color: #00A83F;
+    text-decoration: underline;
+}
+
+.pay-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.pay-button:hover::before {
+    left: 100%;
+}
+
+.pay-button:hover {
+    background: linear-gradient(135deg, #00A83F 0%, #00953D 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 200, 81, 0.35), 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.pay-button:active {
+    transform: translateY(0);
+}
+
+.pay-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Pantalla de carga */
+.loading-screen {
+    display: none !important;
+    text-align: center;
+    padding: 32px 0;
+}
+
+.loading-screen.active {
+    display: block !important;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.loading-spinner {
+    position: relative;
+    width: 56px;
+    height: 56px;
+}
+
+.spinner-ring {
+    width: 56px;
+    height: 56px;
+    border: 3px solid #e5e7eb;
+    border-top: 3px solid #00C851;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.loading-message {
+    color: #64748b;
+    font-size: 15px;
+    margin: 0;
+}
+
+.loading-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #64748b;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.step.active {
+    background: #00C851;
+    color: white;
+    border-color: #00C851;
+    transform: scale(1.02);
+}
+
+.step.completed {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+}
+
+.step i {
+    font-size: 16px;
+    width: 18px;
+}
+
+.step span {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Pantalla de éxito */
+.success-screen {
+    display: none !important;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.success-screen.active {
+    display: block !important;
+}
+
+.success-icon {
+    width: 56px;
+    height: 56px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 24px;
+    color: white;
+    animation: successPop 0.5s ease-out;
+}
+
+@keyframes successPop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.success-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #10b981;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.success-message {
+    color: #64748b;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.transaction-id {
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: #374151;
+    margin-bottom: 18px;
+    border: 1px solid #e2e8f0;
+}
+
+.new-payment-btn {
+    background: white;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+}
+
+.new-payment-btn:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    transform: translateY(-1px);
+}
+
+/* Información de seguridad */
+.security-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 8px;
+    padding: 4px;
+    background: #f8fafc;
+    border-radius: 3px;
+    font-size: 9px;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+/* Responsive Design para Móviles */
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+        align-items: center;
+    }
+
+    .payment-container {
+        margin: 0;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .brand-section {
+        padding: 16px;
+    }
+
+    .interseguro-logo {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 6px;
+    }
+
+    .brand-logo {
+        font-size: 14px;
+    }
+
+    .brand-subtitle {
+        font-size: 10px;
+    }
+
+    .form-section {
+        padding: 14px;
+    }
+
+    .amount-display {
+        padding: 12px;
+        margin-bottom: 14px;
+    }
+
+    .amount-value {
+        font-size: 18px;
+    }
+    
+    .currency-symbol {
+        font-size: 16px;
+        margin-right: 1px;
+    }
+    
+    .amount-input {
+        font-size: 18px;
+        width: auto;
+        max-width: 120px;
+    }
+
+    .trust-badges {
+        gap: 6px;
+        padding: 6px;
+        margin: 10px 0;
+    }
+
+    .trust-badge {
+        font-size: 8px;
+    }
+
+    .form-control {
+        padding: 8px 10px;
+        font-size: 16px; /* Evita zoom en iOS */
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .purchase-summary {
+        padding: 12px;
+        margin: 14px 0;
+    }
+
+    .summary-title {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .summary-row {
+        padding: 7px 0;
+    }
+
+    .summary-label {
+        font-size: 11px;
+    }
+
+    .summary-value {
+        font-size: 12px;
+    }
+
+    .token-desc {
+        font-size: 10px;
+        margin: 3px 0 10px 0;
+    }
+
+    .summary-logo {
+        width: 22px;
+        height: 22px;
+    }
+
+    .total-amount {
+        font-size: 16px;
+    }
+
+    .pay-button {
+        padding: 10px;
+        font-size: 13px;
+        margin-top: 8px;
+    }
+
+    .back-button {
+        padding: 9px;
+        font-size: 12px;
+        margin-top: 6px;
+    }
+
+    .managed-by {
+        font-size: 8px;
+        margin-top: 8px;
+        padding: 5px;
+        gap: 2px;
+    }
+
+    .learn-more {
+        font-size: 8px;
+    }
+
+    .powered-by {
+        padding: 6px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+        align-items: center;
+    }
+
+    .payment-container {
+        margin: 0;
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .brand-section {
+        padding: 14px;
+    }
+
+    .interseguro-logo {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 6px;
+    }
+
+    .brand-logo {
+        font-size: 13px;
+    }
+
+    .brand-subtitle {
+        font-size: 9px;
+    }
+
+    .form-section {
+        padding: 12px;
+    }
+
+    .amount-display {
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+
+    .amount-value {
+        font-size: 16px;
+    }
+    
+    .currency-symbol {
+        font-size: 14px;
+        margin-right: 1px;
+    }
+    
+    .amount-input {
+        font-size: 16px;
+        width: auto;
+        max-width: 100px;
+    }
+
+    .trust-badges {
+        gap: 4px;
+        padding: 6px;
+        margin: 8px 0;
+    }
+
+    .trust-badge {
+        font-size: 7px;
+    }
+
+    .trust-badge i {
+        font-size: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        padding: 8px 10px;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .purchase-summary {
+        padding: 10px;
+        margin: 12px 0;
+    }
+
+    .summary-title {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .summary-row {
+        padding: 6px 0;
+    }
+
+    .summary-label {
+        font-size: 10px;
+    }
+
+    .summary-value {
+        font-size: 11px;
+    }
+
+    .token-desc {
+        font-size: 9px;
+        margin: 3px 0 8px 0;
+    }
+
+    .summary-logo {
+        width: 20px;
+        height: 20px;
+    }
+
+    .total-row .summary-label {
+        font-size: 12px;
+    }
+
+    .total-amount {
+        font-size: 15px;
+    }
+
+    .pay-button {
+        padding: 10px;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+
+    .back-button {
+        padding: 8px;
+        font-size: 11px;
+        margin-top: 6px;
+    }
+
+    .back-button i {
+        font-size: 11px;
+    }
+
+    .managed-by {
+        font-size: 7px;
+        margin-top: 6px;
+        padding: 4px;
+        gap: 2px;
+    }
+
+    .learn-more {
+        font-size: 7px;
+    }
+
+    .powered-by {
+        padding: 6px 12px;
+    }
+
+    .success-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+    }
+
+    .success-title {
+        font-size: 20px;
+    }
+
+    .transaction-id {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .security-info {
+        font-size: 11px;
+        padding: 10px;
+    }
+
+    .loading-title {
+        font-size: 18px;
+    }
+
+    .loading-message {
+        font-size: 14px;
+    }
+
+    .loading-spinner {
+        width: 56px;
+        height: 56px;
+    }
+
+    .spinner-ring {
+        width: 56px;
+        height: 56px;
+        border-width: 3px;
+    }
+
+    .loading-steps {
+        max-width: 100%;
+    }
+
+    .step {
+        padding: 12px;
+    }
+
+    .step span {
+        font-size: 13px;
+    }
+}
+
+/* Landscape móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .payment-container {
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    .header {
+        margin-bottom: 16px;
+    }
+
+    .amount-display {
+        margin-bottom: 16px;
+        padding: 12px;
+    }
+}
+
+/* Mejoras para touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .form-control:focus {
+        transform: scale(1.01);
+        transition: transform 0.2s ease;
+    }
+
+    .pay-button {
+        min-height: 48px; /* Tamaño mínimo recomendado para touch */
+    }
+
+    .new-payment-btn {
+        min-height: 44px;
+        padding: 12px 16px;
+    }
+}

@@ -27,12 +27,16 @@ function loadFormData() {
     document.getElementById('expiryDate').value = data.expiryDate;
     document.getElementById('cvv').value = data.cvv;
     
-    // Cargar nombre y email si están disponibles
-    if (data.cardName) {
-        document.getElementById('cardName').value = data.cardName;
+    // Cargar nombre del cliente (prioriza clienteNombre, luego cardName como fallback)
+    const nombreCompleto = data.clienteNombre || data.cardName || '';
+    if (nombreCompleto) {
+        document.getElementById('cardName').value = nombreCompleto;
     }
-    if (data.email) {
-        document.getElementById('email').value = data.email;
+    
+    // Cargar email del cliente (prioriza clienteCorreo, luego email como fallback)
+    const correoCliente = data.clienteCorreo || data.email || '';
+    if (correoCliente) {
+        document.getElementById('email').value = correoCliente;
     }
     
     // Cargar monto en el input
@@ -44,6 +48,14 @@ function loadFormData() {
     // Actualizar icono de tarjeta
     const cardIcon = document.querySelector('.card-icon');
     updateCardIcon(data.cardNumber, cardIcon);
+    
+    // Limpiar errores visuales si hay datos cargados
+    if (nombreCompleto) {
+        document.getElementById('cardName').classList.remove('error');
+    }
+    if (correoCliente) {
+        document.getElementById('email').classList.remove('error');
+    }
 }
 
 /**
@@ -194,10 +206,36 @@ async function processPayment() {
         step.classList.remove('active', 'completed');
     });
     
-    // Preparar datos para el payload
+    // Obtener datos de URL y formulario
+    const urlParams = getUrlParams();
+    
+    // Capturar valores ACTUALES del formulario (lo que el usuario escribió/modificó)
     const amountInput = document.getElementById('amountInput');
+    const cardNameInput = document.getElementById('cardName');
+    const emailInput = document.getElementById('email');
+    
+    // Combinar todos los datos (PRIORIDAD: Formulario > URL > MOCK_DATA)
     const formData = {
-        amount: amountInput ? amountInput.value : '250.00'
+        amount: amountInput ? amountInput.value : urlParams.amount,
+        // Datos del cliente - PRIORIZA lo que está en el formulario
+        clienteDni: urlParams.clienteDni, // Este no es editable en el form
+        clienteNombre: cardNameInput.value || urlParams.clienteNombre, // PRIORIZA input del form
+        clienteFechaNacimiento: urlParams.clienteFechaNacimiento,
+        clienteGenero: urlParams.clienteGenero,
+        clienteTelefono: urlParams.clienteTelefono,
+        clienteCorreo: emailInput.value || urlParams.clienteCorreo, // PRIORIZA input del form
+        // Datos de cotización desde URL
+        cotizacionProducto: urlParams.cotizacionProducto,
+        cotizacionId: urlParams.cotizacionId,
+        periodoPagoPrimas: urlParams.periodoPagoPrimas,
+        porcentajeDevolucion: urlParams.porcentajeDevolucion,
+        tasaImplicita: urlParams.tasaImplicita,
+        devolucion: urlParams.devolucion,
+        tablaDevolucion: urlParams.tablaDevolucion,
+        sumaAsegurada: urlParams.sumaAsegurada,
+        primaAnual: urlParams.primaAnual,
+        edadActuarial: urlParams.edadActuarial,
+        sexo: urlParams.sexo
     };
     
     // Construir payload

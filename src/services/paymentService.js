@@ -2,7 +2,7 @@
  * Servicio para manejar las operaciones de pago
  */
 
-const API_BASE_URL = 'http://localhost:8000/api/v1/rumbia';
+import { API_CONFIG, MOCK_DATA } from '../config/api.config.js';
 
 /**
  * Envía la solicitud de emisión de póliza
@@ -11,26 +11,45 @@ const API_BASE_URL = 'http://localhost:8000/api/v1/rumbia';
  */
 export async function emitirPoliza(paymentData) {
     try {
-        const response = await fetch(`${API_BASE_URL}/emision-poliza`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(paymentData)
-        });
+        console.log('🚀 Enviando petición a:', `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMITIR_POLIZA}`);
+        console.log('📦 Payload:', JSON.stringify(paymentData, null, 2));
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT);
+        
+        const response = await fetch(
+            `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMITIR_POLIZA}`, 
+            {
+                method: 'POST',
+                headers: API_CONFIG.HEADERS,
+                body: JSON.stringify(paymentData),
+                signal: controller.signal
+            }
+        );
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
-            throw new Error(`Error HTTP: ${response.status}`);
+            throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log('Respuesta del servidor:', data);
+        console.log('✅ Respuesta exitosa del servidor:', data);
+        
         return {
             success: true,
             data
         };
     } catch (error) {
-        console.error('Error al emitir póliza:', error);
+        if (error.name === 'AbortError') {
+            console.error('⏱️ Timeout: La petición tardó demasiado');
+            return {
+                success: false,
+                error: 'Timeout: La petición tardó demasiado'
+            };
+        }
+        
+        console.error('❌ Error al emitir póliza:', error);
         return {
             success: false,
             error: error.message
@@ -48,29 +67,18 @@ export function buildPaymentPayload(formData) {
     
     return {
         "cliente": {
-            "dni": "12345678",
-            "nombre": "Stef Cornejo",
-            "fechaNacimiento": "1990-05-15",
-            "genero": "M",
-            "telefono": "+51987654321",
-            "correo": "wcdz.dev@gmail.com"
+            ...MOCK_DATA.CLIENTE
         },
         "cotizacion": {
-            "producto": "RUMBO",
+            ...MOCK_DATA.COTIZACION_BASE,
             "parametros": {
                 "edad_actuarial": 35,
                 "sexo": "M",
                 "prima": amount
             },
-            "id": 1,
             "fecha_creacion": new Date().toISOString(),
-            "periodo_pago_primas": 7,
-            "porcentaje_devolucion": 1.0596336723618456,
-            "tasa_implicita": 0.019046878016032442,
             "suma_asegurada": amount * 100,
-            "devolucion": 19073.40610251322,
-            "prima_anual": amount * 10,
-            "tabla_devolucion": "[60, 70, 70, 70, 70, 113.39]"
+            "prima_anual": amount * 10
         }
     };
 }

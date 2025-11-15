@@ -1,12 +1,15 @@
 {
   "name": "rumbia-pago",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:pasarela": "vite --config vite.pasarela.config.js",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "build:pasarela": "vite build --config vite.pasarela.config.js",
+    "preview": "vite preview",
+    "serve:src": "vite --open src/index.html"
   },
   "dependencies": {
     "vue": "^3.5.24"

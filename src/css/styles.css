@@ -8,7 +8,7 @@
 /* Estilos del body */
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #00C851 0%, #00953D 50%, #007A33 100%);
+    background: #ffffff;
     background-attachment: fixed;
     min-height: 100vh;
     display: flex;
@@ -44,7 +44,7 @@ body {
 
 /* Sección de branding */
 .brand-section {
-    background: linear-gradient(135deg, #00C851 0%, #00A83F 50%, #00953D 100%);
+    background: #0855c4;
     padding: 18px 20px;
     text-align: center;
     color: white;
@@ -145,13 +145,13 @@ body {
 }
 
 .powered-by-link {
-    color: #00C851;
+    color: #0855c4;
     text-decoration: none;
     font-weight: 500;
 }
 
 .powered-by-link:hover {
-    color: #00A83F;
+    color: #0644a3;
     text-decoration: underline;
 }
 
@@ -175,7 +175,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(90deg, #0855c4 0%, #0644a3 100%);
 }
 
 .amount-label {
@@ -231,8 +231,8 @@ body {
 }
 
 .amount-input:focus {
-    background: rgba(0, 200, 81, 0.05);
-    box-shadow: 0 0 0 2px rgba(0, 200, 81, 0.2);
+    background: rgba(8, 85, 196, 0.05);
+    box-shadow: 0 0 0 2px rgba(8, 85, 196, 0.2);
     padding: 4px 8px 4px 8px;
 }
 
@@ -286,8 +286,8 @@ body {
 
 .form-control:focus {
     outline: none;
-    border-color: #00C851;
-    box-shadow: 0 0 0 2px rgba(0, 200, 81, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    border-color: #0855c4;
+    box-shadow: 0 0 0 2px rgba(8, 85, 196, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .form-control:focus::placeholder {
@@ -333,7 +333,7 @@ body {
 }
 
 .card-input:focus-within .card-icon {
-    color: #00C851;
+    color: #0855c4;
     transform: translateY(-50%) scale(1.1);
 }
 
@@ -478,19 +478,19 @@ body {
 .total-row {
     margin-top: 6px;
     padding-top: 12px;
-    border-top: 2px solid #00C851;
+    border-top: 2px solid #0855c4;
     border-bottom: none;
 }
 
 .total-row .summary-label {
     font-size: 13px;
-    color: #00953D;
+    color: #0855c4;
     font-weight: 700;
 }
 
 .total-amount {
     font-size: 18px;
-    color: #00C851;
+    color: #0855c4;
     font-weight: 700;
     letter-spacing: -0.01em;
 }
@@ -498,7 +498,7 @@ body {
 /* Botón de pago */
 .pay-button {
     width: 100%;
-    background: linear-gradient(135deg, #00C851 0%, #00A83F 100%);
+    background: #ea0c90;
     color: white;
     border: none;
     padding: 12px;
@@ -514,7 +514,7 @@ body {
     gap: 6px;
     letter-spacing: -0.01em;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 3px 8px rgba(0, 200, 81, 0.25), 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 8px rgba(234, 12, 144, 0.25), 0 1px 3px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
 }
@@ -569,7 +569,7 @@ body {
 }
 
 .learn-more {
-    color: #00C851;
+    color: #0855c4;
     cursor: pointer;
     text-decoration: none;
     font-weight: 500;
@@ -578,7 +578,7 @@ body {
 }
 
 .learn-more:hover {
-    color: #00A83F;
+    color: #0644a3;
     text-decoration: underline;
 }
 
@@ -598,9 +598,9 @@ body {
 }
 
 .pay-button:hover {
-    background: linear-gradient(135deg, #00A83F 0%, #00953D 100%);
+    background: #c70a78;
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(0, 200, 81, 0.35), 0 2px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 6px 16px rgba(234, 12, 144, 0.35), 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .pay-button:active {
@@ -641,7 +641,7 @@ body {
     width: 56px;
     height: 56px;
     border: 3px solid #e5e7eb;
-    border-top: 3px solid #00C851;
+    border-top: 3px solid #0855c4;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -687,9 +687,9 @@ body {
 }
 
 .step.active {
-    background: #00C851;
+    background: #0855c4;
     color: white;
-    border-color: #00C851;
+    border-color: #0855c4;
     transform: scale(1.02);
 }
 

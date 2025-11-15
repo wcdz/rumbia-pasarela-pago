@@ -3,7 +3,7 @@
  */
 
 export const API_CONFIG = {
-    BASE_URL: 'http://localhost:8000/api/v1/rumbia',
+    BASE_URL: 'https://rumbia-backend-197831323053.us-central1.run.app/api/v1/rumbia',
     ENDPOINTS: {
         EMITIR_POLIZA: '/emision-poliza'
     },
